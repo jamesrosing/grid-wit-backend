@@ -1,0 +1,13 @@
+entrypoint = "wsgi.py"
+modules = ["nodejs-20", "python-3.11"]
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["gunicorn", "--bind", "0.0.0.0:8080", "wsgi:app"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 8080
+externalPort = 80
